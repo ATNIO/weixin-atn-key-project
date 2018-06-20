@@ -46,6 +46,12 @@ ATN微信小程序现有功能如下：
    
    
 ### 后期改进
-    &emps;&emps;后期可将Tina框架改为美团点评开发的**mpvue框架**([Github地址](https://github.com/Meituan-Dianping/mpvue)，[文档地址](http://mpvue.com/))，或者Tecent自己开发的**wepy框架**([Github地址](https://github.com/Tencent/wepy)，[文档地址](https://tencent.github.io/wepy/))。同时可持续迭代优化和丰富小程序功能。
+&emps;&emps;后期可将Tina框架改为美团点评开发的**mpvue框架**([Github地址](https://github.com/Meituan-Dianping/mpvue)，[文档地址](http://mpvue.com/))，或者Tecent自己开发的**wepy框架**([Github地址](https://github.com/Tencent/wepy)，[文档地址](https://tencent.github.io/wepy/))。同时可持续迭代优化和丰富小程序功能。
   
+
+
+### 参考资料
+1. [weapp.qrcode.js在微信小程序中，快速生成二维码](https://github.com/yingye/weapp-qrcode)
+2. [Github开源项目coldwallet](https://github.com/bihu-id/coldwallet)
+
 
