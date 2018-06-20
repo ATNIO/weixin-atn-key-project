@@ -1,0 +1,18 @@
+<config>
+
+</config>
+
+<style>
+
+</style>
+
+<template>
+  <view>
+    Hi <author />!
+  </view>
+</template>
+
+<script>
+Page({
+})
+</script>
