@@ -13,8 +13,9 @@
 </template>
 
 <script>
-// pages/my/my.js
-Page({
+import { Page } from '@tinajs/tina'
+
+Page.define({
 
     /**
      * 页面的初始数据

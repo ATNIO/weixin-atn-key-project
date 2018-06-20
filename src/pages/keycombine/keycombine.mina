@@ -71,6 +71,36 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.compute_button {
+  position: relative;
+  height: 72px;
+}
+.compute_button .left {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  background: lightgreen;
+  border: 0;
+}
+.compute_button .right {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: lightgreen;
+  border: 0;
+}
+
+.compute_button .center {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: lightgreen;
+  border: 0;
+}
+.other-button-hover {
+  background-color: #aaa;
+}
 </style>
 
 <template>
@@ -78,33 +108,62 @@
  <view class="container-box">
      <!--识别器-->
      <view class="home-section">
-         <view  class="home-section-title" bindtap="recognizeCode">
-             <text class="home-section-title-recognize">识别器</text>
-             <image class="home-next-btn" src="../../images/next.png"></image>
+         <view  class="home-section-title" bindtap="recognizeCode_1" data->
+             <text class="home-section-title-recognize">识别器1-3</text>
+             <image class="home-next-btn" src="../../images/next.png"/>
          </view>
-         <view hidden="{{isShowResult}}" class="recog-text">
-             <textarea maxlength="-1" value="{{recognizeMsg}}" class="recognize-content"/>
+         <view hidden="{{isShowResult_1}}" class="recog-text">
+             <textarea maxlength="-1" value="{{recognizeCode_1}}" class="recognize-content"/>
          </view>
      </view>
-     <form report-submit bindsubmit="submit">
- </form>
+       <view class="home-section">
+         <view  class="home-section-title" bindtap="recognizeCode_2" va>
+             <text class="home-section-title-recognize">识别器2-3</text>
+             <image class="home-next-btn" src="../../images/next.png"/>
+         </view>
+         <view hidden="{{isShowResult_2}}" class="recog-text">
+             <textarea maxlength="-1" value="{{recognizeCode_2}}" class="recognize-content"/>
+         </view>
+     </view>
+     <view class="home-section">
+         <view  class="home-section-title" bindtap="recognizeCode_3">
+             <text class="home-section-title-recognize">识别器3-3</text>
+             <image class="home-next-btn" src="../../images/next.png"/>
+         </view>
+         <view hidden="{{isShowResult_3}}" class="recog-text">
+             <textarea maxlength="-1" value="{{recognizeCode_3}}" class="recognize-content"/>
+         </view>
+     </view>
+     <view class="compute_button">
+        <button class="center" size="mini"
+         plain="false"  bindtap="generateData" hover-class="other-button-hover">合成私钥</button>
+    </view>
+     <!-- <button formType="generateData" class="mybtn" type="primary">合成私钥</button> -->
  </view>
 
 </template>
 
 <script>
-// pages/keycreate/keycreate.js
-Page({
+
+import { Page } from '@tinajs/tina'
+
+import { create,combine } from '../../utils/sssa.js'
+
+
+Page.define({
 
   /**
    * 页面的初始数据
    */
   data: {
-    qrMsg: '',
-    recognizeMsg: '',
-    isShowMsg: false,
-    isShowResult: false,
-    showClear: true,
+    recognizeCode_1:'',
+    recognizeCode_2:'',
+    recognizeCode_3:'',
+    combineData:'',
+    isShowResult_1: true,
+    isShowResult_2: true,
+    isShowResult_3: true,
+    sharesStrs:[],
   },
 
   /**
@@ -112,8 +171,7 @@ Page({
    */
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    this.setData({
-      isShowMsg: false,
+     this.setData({
       isShowResult: true,
     })
   },
@@ -146,20 +204,106 @@ Page({
     // 页面关闭
   },
 
-  // 识别二维码
-  recognizeCode: function () {
+  methods:{
+
+  generateData:function(){
+    var recognizeCode_1 = wx.getStorageSync('recognizeCode_1');
+    var recognizeCode_2 = wx.getStorageSync('recognizeCode_2');
+    var recognizeCode_3 = wx.getStorageSync('recognizeCode_3');
+     if ((null==recognizeCode_1||recognizeCode_1 == "")&&
+              (null==recognizeCode_2||recognizeCode_2 == "")&&
+                 (null==recognizeCode_3||recognizeCode_3 == "")) {
+            wx.showToast({
+                title: '生成失败',
+                icon: 'loading',
+                duration: 500
+            })
+            return
+        }
+        var sharesStrs=new Array();
+        if (recognizeCode_1.length > 0) {
+          sharesStrs.push(recognizeCode_1);
+        }
+        if ( recognizeCode_2.length > 0) {
+           sharesStrs.push(recognizeCode_2);
+        }
+        if (recognizeCode_3.length > 0) {
+           sharesStrs.push(recognizeCode_3);
+        }
+        if (sharesStrs.length>=2) {
+           var result = combine(sharesStrs);
+           this.setData({
+            combineData:result,
+          })
+        }else{
+            wx.showToast({
+                title: '至少需要两个子私钥',
+                icon: 'loading',
+                duration: 500
+            })
+            return
+        }
+        var that = this
+         wx.setStorage({
+            key:"combineData",
+            data: that.data.combineData,
+            success: function(){
+                console.log('setStorage success');
+            }
+        })
+        wx.removeStorage({
+           key: 'recognizeCode_1',
+           success:function(res){
+                console.log('recognizeCode_1  removeStorage success')
+           }
+        })
+        wx.removeStorage({
+           key: 'recognizeCode_2',
+           success:function(res){
+                console.log('recognizeCode_2  removeStorage success')
+           }
+        })
+        wx.removeStorage({
+           key: 'recognizeCode_3',
+           success:function(res){
+                console.log('recognizeCode_3  removeStorage success')
+           }
+        })
+
+        wx.navigateTo({
+            url: '../keycombineshow/parentqrcode',
+            success: function (res) {
+                // success
+                console.log('wx.navigateTo  /keycombineshow/parentqrcode');
+            },
+            fail: function () {
+                // fail
+            },
+            complete: function () {
+                // complete
+            }
+        })
+        
+  },
+
+
+  recognizeCode_1: function (e){
+    console.log(e)
     this.setData({
-      isShowMsg: true,
-      isShowResult: false,
-      recognizeMsg: "",
+      isShowResult_1: false,
     })
-    var that = this
+    var that = this;
     wx.scanCode({
       success: function (res) {
-        // success
-        console.log(res)
         that.setData({
-          recognizeMsg: res["result"]
+            recognizeCode_1: res["result"]
+        })
+        wx.setStorage({
+            key:"recognizeCode_1",
+            data: that.data.recognizeCode_1,
+            success: function(){
+                console.log('recognizeCode_1 setStorage success');
+            }
         })
       },
       fail: function () {
@@ -169,6 +313,73 @@ Page({
         // complete
       }
     })
+  },
+
+
+
+  recognizeCode_2: function (e){
+    console.log(e)
+    this.setData({
+      isShowResult_2:false
+    })
+    var that = this;
+    wx.scanCode({
+      success: function (res) {
+        // success
+        console.log('recognizeCode wx.scanCode1:'+res)
+        console.log('recognizeCode wx.scanCode2:'+that.data)
+        that.setData({
+            recognizeCode_2: res["result"]
+        })
+
+        //将子密钥数组本地存储
+      
+        wx.setStorage({
+            key:"recognizeCode_2",
+            data: that.data.recognizeCode_2,
+            success: function(){
+                console.log('recognizeCode_2  setStorage success');
+            }
+        })
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
+  },
+
+  recognizeCode_3: function (e){
+    console.log(e)
+    this.setData({
+      isShowResult_3: false,
+    })
+    var that = this;
+    wx.scanCode({
+      success: function (res) {
+        that.setData({
+            recognizeCode_3: res["result"]
+        })
+        wx.setStorage({
+            key:"recognizeCode_3",
+            data: that.data.recognizeCode_3,
+            success: function(){
+                console.log(' recognizeCode_3 setStorage success');
+            }
+        })
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
+  },
+
+
   },
 
 })

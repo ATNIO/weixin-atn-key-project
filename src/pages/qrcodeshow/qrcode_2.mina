@@ -1,0 +1,268 @@
+<config>
+{
+  "navigationBarBackgroundColor": "#3A5FCD",
+  "navigationBarTextStyle": "#fff",
+  "navigationBarTitleText": "二维码生成",
+  "backgroundColor": "#efeff4",
+  "backgroundTextStyle": "light"
+}
+</config>
+
+<style>
+
+.qrcode-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  padding-top: 30rpx;
+  background-color: #F9F9F9;
+}
+
+page{
+  height: 100%;
+}
+
+.qrcode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -70px;
+  background-color: #e5e5e5;
+  border-radius: 20rpx;
+}
+
+.qrcode {
+  background-color: white;
+  width: 550rpx;
+  height: 550rpx;
+}
+
+.qrcode-top {
+  min-height: 50px;
+  /*font-size: xx-large;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /*color: #ff7069;*/
+  color: #217834;
+}
+
+.qrcode-bottom {
+  min-height: 50px;
+  width: 100%;
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: gray;
+  flex-direction: column;
+  text-align: center;
+}
+
+.textarea-wrp {
+  padding: 0 25rpx;
+  background-color: #fff;
+}
+
+.page-section{
+  width: 100%;
+  margin-bottom: 60rpx;
+}
+
+.page-section:last-child{
+  margin-bottom: 0;
+}
+
+.page-section-title{
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 10rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.compute_button {
+  position: relative;
+  height: 72px;
+}
+.compute_button .left {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  background: lightgreen;
+  border: 0;
+}
+.compute_button .right {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: lightgreen;
+  border: 0;
+}
+.other-button-hover {
+  background-color: #aaa;
+}
+</style>
+
+<template>
+  <view class="qrcode-box">
+    <view class="qrcode-container">
+      <view class="qrcode-top">
+        <text>子密钥二维码（2-3）</text>
+      </view>
+       <!-- <canvas bindtap="previewImg" canvas-id="mycanvas2" class="qrcode"/> -->
+       <canvas  bindtap="previewImg"  style="width: 300px; height: 300px;" canvas-id="myQrcode_2"></canvas>
+      <view class="qrcode-bottom">
+        <view>点击图片可下载与分享</view>
+      </view>
+    </view>
+    <view class="page-section">
+    <view class="textarea-wrp" >
+      <textarea auto-focus="true" style="height: 3em" disabled="false" placeholder="{{text}}"/>
+    </view> 
+  </view>
+
+  <view class="compute_button">
+  <button class="left"  size="mini"
+    plain="false" bindtap="lastQRCode" hover-class="other-button-hover">上一个</button>
+  <button class="right" size="mini"
+    plain="false"  bindtap="nextQRCode" hover-class="other-button-hover">下一个</button>
+</view>
+  </view>
+
+</template>
+
+<script>
+import { Page } from '@tinajs/tina'
+// var QR = require("../../utils/qrcode.js")
+
+
+import { create, combine } from '../../utils/sssa.js'
+import drawQrcode from '../../utils/weapp.qrcode.esm.js'
+Page.define({
+    data: {
+        index:0,
+        list:[],
+        text:'',
+    },
+    onLoad: function (options) {
+
+    this.setData({
+            index: options['index'],
+        })
+      var  secretStrs=wx.getStorageSync('secretkeys');
+      var secretList = JSON.parse(secretStrs);
+       this.setData({
+            text:secretList[this.data.index]
+       })
+       secretList[this.data.index]
+        if (secretList[this.data.index].length > 300) {
+            wx.showLoading({
+                title: '亲，你是在摧残我啊！！！',
+            })
+            drawQrcode({
+                    width: 300,
+                     height: 300,
+                    canvasId: 'myQrcode_2',
+                    text: secretList[this.data.index],
+            });
+            setTimeout(function () {
+                wx.hideLoading()
+            }, 2000)
+        } else {
+                console.log(secretList[this.data.index]);
+                 drawQrcode({
+                    width: 300,
+                     height: 300,
+                    canvasId: 'myQrcode_2',
+                    text: secretList[this.data.index],
+                    });
+                // QR.qrApi.draw(secretList[this.data.index], 'mycanvas2', 300, 300);
+
+                
+        }
+    },
+
+  methods:{
+
+        lastQRCode: function(e){
+        wx.navigateTo({
+            url: '../qrcodeshow/qrcode_1?index=0',
+            success: function (res) {
+                // success
+                console.log('wx.navigateTo:[qrcode_1,index=0]');
+            },
+            fail: function () {
+                // fail
+            },
+            complete: function () {
+                // complete
+            }
+        })
+    },
+    //路由到下一个QRCode页面
+    nextQRCode: function(e){
+        wx.navigateTo({
+            url: '../qrcodeshow/qrcode_3?index=2',
+            success: function (res) {
+                // success
+               console.log('wx.navigateTo:[qrcode_3,index=2]');
+            },
+            fail: function () {
+                // fail
+            },
+            complete: function () {
+                // complete
+            }
+        })
+    },
+    //点击图片进行预览，长按保存分享图片
+    previewImg: function (e) {
+        wx.showActionSheet({
+            itemList: ['保存二维码'],
+            success: function (res) {
+                console.log(res.tapIndex)
+                if (res.tapIndex == 0) {
+                    console.log('保存二维码')
+                    wx.canvasToTempFilePath({
+                        canvasId: 'myQrcode_2',
+                        success: function (res) {
+                            var tempFilePath = encodeURI(res.tempFilePath)
+                             console.log('tempFilePath'+res.tempFilePath)
+                            wx.saveImageToPhotosAlbum({
+                                filePath: res.tempFilePath,
+                                success: function success(res) {
+                                    console.log('saved::' + res.savedFilePath);
+                                    wx.showToast({
+                                        title: '保存成功',
+                                    })
+                                }
+                            })
+                        },
+                        fail: function (res) {
+                            console.log(res);
+                            wx.showToast({
+                                title: '保存失败',
+                                icon: 'loading'
+                            }),
+                                setTimeout(function () {
+                                    wx.hideLoading()
+                                }, 2000)
+                        }
+                    });
+                }
+            },
+            fail: function (res) {
+                console.log(res.errMsg)
+            }
+        })
+    },
+
+
+    },
+
+})
+</script>

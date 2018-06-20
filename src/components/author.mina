@@ -1,0 +1,15 @@
+<config>
+{
+  "component": true
+}
+</config>
+
+<template>
+  <view> edgeowner </view>
+</template>
+
+<script>
+Component({
+
+})
+</script>

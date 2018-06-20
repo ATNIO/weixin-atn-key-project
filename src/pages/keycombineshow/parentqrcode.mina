@@ -61,58 +61,108 @@ page{
   flex-direction: column;
   text-align: center;
 }
+
+.textarea-wrp {
+  padding: 0 25rpx;
+  background-color: #fff;
+}
+
+.page-section{
+  width: 100%;
+  margin-bottom: 60rpx;
+}
+
+.page-section:last-child{
+  margin-bottom: 0;
+}
+
+.page-section-title{
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 10rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
 </style>
 
 <template>
   <view class="qrcode-box">
     <view class="qrcode-container">
       <view class="qrcode-top">
-        <text>子密钥二维码</text>
+        <text>密钥二维码</text>
       </view>
-       <canvas bindtap="previewImg" canvas-id="mycanvas" class="qrcode"/>
+       <!-- <canvas bindtap="previewImg" canvas-id="mycanvas" class="qrcode"/> -->
+        <canvas  bindtap="previewImg"  style="width: 300px; height: 300px;" canvas-id="myQrcode"></canvas>
       <view class="qrcode-bottom">
         <view>点击图片可下载与分享</view>
       </view>
     </view>
+    <view class="page-section">
+    <view class="textarea-wrp" >
+      <textarea auto-focus="true" style="height: 3em" disabled="false" placeholder="{{qrMsg}}"/>
+    </view> 
   </view>
-  
-  
+  </view>
+
 </template>
 
 <script>
 import { Page } from '@tinajs/tina'
-var QR = require("../../utils/qrcode.js")
-import { create, combine } from '../../utils/sssa.js'
 
+import drawQrcode from '../../utils/weapp.qrcode.esm.js'
+
+import { create, combine } from '../../utils/sssa.js'
  
+var time = 0;
+var touchDot = 0;//触摸时的原点
+var interval = "";
+var flag_hd = true;
+
 Page.define({
-    data: {},
+    data: {
+       qrMsg:''
+    },
+
+   onShow: function(){
+    flag_hd = true;    //重新进入页面之后，可以再次执行滑动切换页面代码
+    clearInterval(interval); // 清除setInterval
+    time = 0;
+   },
+
+   
     onLoad: function (options) {
-        this.setData({
-            inputContent: options['msg']
-        })
-        console.log(this.data['inputContent'].length)
-        if (this.data['inputContent'].length > 300) {
+
+      var combineData = wx.getStorageSync('combineData');
+       console.log('combineDataQQQQQQ:'+combineData);
+       this.setData({
+            qrMsg:combineData
+       })
+       var that =this 
+        if (that.data.qrMsg.length > 300) {
             wx.showLoading({
                 title: '亲，你是在摧残我啊！！！',
             })
-            QR.qrApi.draw(this.data.inputContent, 'mycanvas', 300, 300)
+            drawQrcode({
+                    width: 300,
+                     height: 300,
+                    canvasId: 'myQrcode',
+                    text: that.data.qrMsg,
+             })
             setTimeout(function () {
                 wx.hideLoading()
             }, 2000)
         } else {
-            var minimum=2 ,shares=3, raw= this.data.inputContent.toString('hex')
-            var  secretList = create(minimum,shares,raw)
-            for (let index = 0; index < secretList.length; index++) {
-                console.log(secretList[index]);
-                QR.qrApi.draw(secretList[index], 'mycanvas', 300, 300);
-            }
-                
+                console.log('qrMsg:'+that.data.qrMsg);
+                 drawQrcode({
+                    width: 300,
+                     height: 300,
+                    canvasId: 'myQrcode',
+                     text: that.data.qrMsg,
+                    })
         }
     },
 
   methods:{
-
     //点击图片进行预览，长按保存分享图片
     previewImg: function (e) {
         wx.showActionSheet({
@@ -122,10 +172,10 @@ Page.define({
                 if (res.tapIndex == 0) {
                     console.log('保存二维码')
                     wx.canvasToTempFilePath({
-                        canvasId: 'mycanvas',
+                        canvasId: 'myQrcode',
                         success: function (res) {
                             var tempFilePath = encodeURI(res.tempFilePath)
-                            console.log(res)
+                            console.log('tempFilePath'+res.tempFilePath)
                             wx.saveImageToPhotosAlbum({
                                 filePath: res.tempFilePath,
                                 success: function success(res) {
@@ -153,7 +203,8 @@ Page.define({
                 console.log(res.errMsg)
             }
         })
-    },},
+    },
+    },
 
 })
 </script>

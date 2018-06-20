@@ -1,0 +1,49 @@
+{
+  "name": "weixin-atn-key-project",
+  "private": true,
+  "version": "0.0.1",
+  "description": "密钥分割",
+  "author": "edgeowner",
+  "scripts": {
+    "clean": "rimraf \"./dist/!(app.json|project.config.json)**\"",
+    "prestart": "run-s clean",
+    "prebuild": "run-s clean",
+    "start": "webpack -w",
+    "build": "cross-env NODE_ENV=production webpack",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@tinajs/tina": "^1.4.1",
+    "atob": "^2.1.1",
+    "base64-js": "^1.3.0",
+    "crypto": "^1.0.1",
+    "es6-promise": "^4.1.1",
+    "mersenne-twister": "^1.1.0",
+    "sssa-js": "0.0.1",
+    "utf8": "^3.0.0",
+    "weapp-qrcode": "^0.9.0"
+  },
+  "devDependencies": {
+    "@tinajs/mina-entry-webpack-plugin": "^0.6.5",
+    "@tinajs/mina-loader": "^0.6.4",
+    "@tinajs/mina-runtime-webpack-plugin": "^0.1.4",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.1.1",
+    "file-loader": "^1.1.5",
+    "jest": "^23.1.0",
+    "npm-run-all": "^4.1.2",
+    "postcss-loader": "^2.1.3",
+    "postcss-px2units": "^0.1.1",
+    "postcss-url": "^7.3.1",
+    "precss": "^2.0.0",
+    "relative-file-loader": "^1.1.12",
+    "rimraf": "^2.6.2",
+    "uglifyjs-webpack-plugin": "^1.1.2",
+    "webpack": "^3.8.1",
+    "wxml-loader": "^0.2.1"
+  }
+}

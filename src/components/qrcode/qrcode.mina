@@ -1,0 +1,100 @@
+<config>
+{
+  "component": true
+}
+</config>
+
+<style>
+.fission-red-packet-bike-marquee {
+  width: 100%;
+  height: 48px;
+  background: #fff;
+  .swiper-container {
+    height: 48px;
+    background: rgba(240, 91, 72, .6);
+    .swiper-item {
+      display: inline-block;
+      height: 48px;
+      >image {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        border-radius: 36px;
+        margin: 6px 14px 6px 48px;
+        margin-left: 60px;
+        vertical-align: top;
+      }
+      >text {
+        font-size: 24px;
+        line-height: 48px;
+        color: #ffffff;
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+  }
+}
+</style>
+
+<template>
+<view class="qrcode-components">
+  <canvas canvas-id="qrcodePro"></canvas>
+</view>
+</template>
+
+<script>
+import { Component } from '@tinajs/tina'
+import drawQrcode from '../../utils/weapp.qrcode.js'
+
+Component.define([
+    'require',
+    'dependency'
+], function(require, factory) {
+    'use strict';
+    
+});({
+  behaviors: [],
+  options: {
+    multipleSlots: true // 在组件定义时的选项中启用多slot支持
+  },
+  properties: {
+    isDraw: {
+      type: Boolean,
+      value: true,
+      observer: function(newVal, oldVal) {
+        if (newVal) {
+          drawQrcode({
+            width: 80,
+            height: 80,
+            canvasId: 'qrcodePro',
+            text: 'test drawQrcode in component',
+            _this: this
+          })
+        }
+      }
+    }
+  },
+  data: {
+  },
+
+  attached: function () {
+  },
+  ready: function () {
+    // drawQrcode({
+    //   width: 80,
+    //   height: 80,
+    //   canvasId: 'qrcodePro',
+    //   text: 'test drawQrcode in component',
+    //   _this: this
+    // })
+  },
+  moved: function () {},
+  detached: function () {},
+
+  methods: {
+  }
+})
+
+</script>
+
+

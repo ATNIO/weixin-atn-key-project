@@ -68,8 +68,13 @@
 </template>
 
 <script>
+import { Page } from '@tinajs/tina'
+import code_key from '../../images/code_key.png'
+// import banner_02 from '../../images/banner_02.jpg'
+import banner_02 from '../../images/banner_atn.jpg'
+
 var app = getApp();
-Page({
+Page.define({
     data: {
         indexmenu: [],
         imgUrls: []
@@ -86,31 +91,40 @@ Page({
         //   })
         // })
     },
+
+    methods: {
     fetchData: function () {
-        this.setData({
+        this.setData(
+        {
             indexmenu: [
                 {
-                    'icon': './../../images/code_key.png',
+                    'icon': code_key,
                     'text': '子私钥生成',
                     'url': 'keycreate'
                 },
                 {
-                  'icon': './../../images/code_key.png',
+                  'icon': code_key,
                   'text': '子私钥找回',
                   'url': 'keycombine'
                 }
             ],
             imgUrls: [
-                '../../images/banner_02.jpg',
-
+              banner_02
             ]
         })
     },
+
+
+
+
     changeRoute: function (url) {
         wx.navigateTo({
             url: `../${url}/${url}`
         })
     },
+
+
+
     onReady: function () {
         //生命周期函数--监听页面初次渲染完成
         // console.log('onReady');
@@ -134,6 +148,7 @@ Page({
     onReachBottom: function () {
         //页面上拉触底事件的处理函数
         // console.log('onReachBottom');
-    }
+    },
+    },
 })
 </script>
