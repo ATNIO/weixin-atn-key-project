@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a366b17-f013-4e9e-877f-5998595614f7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/index/index.mina" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index/index.mina" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/keycombine/keycombine.mina" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/keycombine/keycombine.mina" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/keycreate/keycreate.mina" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/keycreate/keycreate.mina" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/my/my.mina" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/my/my.mina" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/qrcodecreate/qrcodecreate.mina" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/qrcodecreate/qrcodecreate.mina" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/sssa-base.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/sssa.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/sssa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/sssa2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/util的副本.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -60,9 +52,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/atob/test.js">
           <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="343">
+                <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="QRCodeTool.js" pinned="false" current-in-tab="false">
@@ -72,15 +76,6 @@
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.mina" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app.mina">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -186,6 +181,7 @@
         <option value="$PROJECT_DIR$/src/utils/sssa.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/utils/test.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -206,7 +202,7 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="240" />
+    <option name="x" value="-7" />
     <option name="y" value="23" />
     <option name="width" value="1658" />
     <option name="height" value="833" />
@@ -294,7 +290,7 @@
       <workItem from="1528719902637" duration="6060000" />
       <workItem from="1528780723494" duration="15317000" />
       <workItem from="1529394145689" duration="220000" />
-      <workItem from="1529477009374" duration="927000" />
+      <workItem from="1529477009374" duration="1431000" />
     </task>
     <servers />
   </component>
@@ -304,10 +300,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37405000" />
+    <option name="totallyTimeSpent" value="37909000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="240" y="23" width="1658" height="833" extended-state="0" />
+    <frame x="-7" y="23" width="1658" height="833" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20342089" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -317,7 +314,7 @@
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.29483697" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.35461956" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -342,13 +339,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webpack.config.babel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="62" column="25" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/pages/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-43">
@@ -637,6 +627,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/atob/test.js">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="343">
+            <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
