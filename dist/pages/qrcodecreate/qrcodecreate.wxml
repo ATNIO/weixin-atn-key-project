@@ -1,0 +1,11 @@
+<view class="qrcode-box">
+  <view class="qrcode-container">
+    <view class="qrcode-top">
+      <text>子密钥二维码</text>
+    </view>
+     <canvas bindtap="previewImg" canvas-id="mycanvas" class="qrcode"/>
+    <view class="qrcode-bottom">
+      <view>点击图片可下载与分享</view>
+    </view>
+  </view>
+</view>

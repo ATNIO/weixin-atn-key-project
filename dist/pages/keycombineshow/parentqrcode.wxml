@@ -1,0 +1,17 @@
+<view class="qrcode-box">
+  <view class="qrcode-container">
+    <view class="qrcode-top">
+      <text>密钥二维码</text>
+    </view>
+     <!-- <canvas bindtap="previewImg" canvas-id="mycanvas" class="qrcode"/> -->
+      <canvas  bindtap="previewImg"  style="width: 300px; height: 300px;" canvas-id="myQrcode"></canvas>
+    <view class="qrcode-bottom">
+      <view>点击图片可下载与分享</view>
+    </view>
+  </view>
+  <view class="page-section">
+  <view class="textarea-wrp" >
+    <textarea auto-focus="true" style="height: 3em" disabled="false" placeholder="{{qrMsg}}"/>
+  </view> 
+</view>
+</view>

@@ -1,0 +1,36 @@
+<!--pages/home/home.wxml-->
+<view class="container-box">
+    <!--识别器-->
+    <view class="home-section">
+        <view  class="home-section-title" bindtap="recognizeCode_1" data->
+            <text class="home-section-title-recognize">识别器1-3</text>
+            <image class="home-next-btn" src="/assets/next.039eeb.png"/>
+        </view>
+        <view hidden="{{isShowResult_1}}" class="recog-text">
+            <textarea maxlength="-1" value="{{recognizeCode_1}}" class="recognize-content"/>
+        </view>
+    </view>
+      <view class="home-section">
+        <view  class="home-section-title" bindtap="recognizeCode_2" va>
+            <text class="home-section-title-recognize">识别器2-3</text>
+            <image class="home-next-btn" src="/assets/next.039eeb.png"/>
+        </view>
+        <view hidden="{{isShowResult_2}}" class="recog-text">
+            <textarea maxlength="-1" value="{{recognizeCode_2}}" class="recognize-content"/>
+        </view>
+    </view>
+    <view class="home-section">
+        <view  class="home-section-title" bindtap="recognizeCode_3">
+            <text class="home-section-title-recognize">识别器3-3</text>
+            <image class="home-next-btn" src="/assets/next.039eeb.png"/>
+        </view>
+        <view hidden="{{isShowResult_3}}" class="recog-text">
+            <textarea maxlength="-1" value="{{recognizeCode_3}}" class="recognize-content"/>
+        </view>
+    </view>
+    <view class="compute_button">
+       <button class="center" size="mini"
+        plain="false"  bindtap="generateData" hover-class="other-button-hover">合成私钥</button>
+   </view>
+    <!-- <button formType="generateData" class="mybtn" type="primary">合成私钥</button> -->
+</view>

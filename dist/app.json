@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/my/my",
+    "pages/keycreate/keycreate",
+    "pages/keycombine/keycombine",
+    "pages/qrcodecreate/qrcodecreate",
+    "pages/qrcodeshow/qrcode_1",
+    "pages/qrcodeshow/qrcode_2",
+    "pages/qrcodeshow/qrcode_3",
+    "pages/keycombineshow/parentqrcode"
+  ],
+  "window": {
+    "backgroundTextStyle": "white",
+    "navigationBarBackgroundColor": "#3A5FCD",
+    "navigationBarTitleText": "ATN",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "工具",
+       "iconPath": "images/tarbar_init_all.png",
+      "selectedIconPath": "images/tarbar_all.png"
+    },
+    {
+      "pagePath": "pages/my/my",
+      "text": "我的",
+      "iconPath": "images/tarbar_init_account.png",
+      "selectedIconPath": "images/tarbar_account.png"
+    }
+    ],
+    "color": "#333",
+    "selectedColor": "#f7982a",
+    "backgroundColor": "#f6f6f6",
+    "borderStyle": "white"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  }
+}

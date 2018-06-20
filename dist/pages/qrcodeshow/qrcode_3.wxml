@@ -1,0 +1,22 @@
+<view class="qrcode-box">
+   <view class="qrcode-container">
+     <view class="qrcode-top">
+       <text>子密钥二维码（3-3）</text>
+     </view>
+      <!-- <canvas bindtap="previewImg" canvas-id="mycanvas3" class="qrcode"/> -->
+      <canvas  bindtap="previewImg"  style="width: 300px; height: 300px;" canvas-id="myQrcode_3"></canvas>
+     <view class="qrcode-bottom">
+       <view>点击图片可下载与分享</view>
+     </view>
+   </view>
+   <view class="page-section">
+   <view class="textarea-wrp" >
+     <textarea auto-focus="true" style="height: 3em" disabled="false" placeholder="{{text}}"/>
+   </view> 
+ </view>
+<view class="compute_button">
+ <button class="left"  size="mini"
+   plain="false" bindtap="lastQRCode" hover-class="other-button-hover">上一个</button>
+</view>
+
+ </view>

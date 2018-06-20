@@ -1,0 +1,19 @@
+<!--pages/home/home.wxml-->
+<view class="container-box">
+    <!--生成器-->
+    <view class="home-section">
+
+        <view class="home-section-title" bindtap="makeQrcode">
+            <text class="home-section-title-make">生成器</text>
+            <image class="home-next-btn" src="/assets/next.039eeb.png"></image>
+        </view>
+        <view hidden="{{isShowMsg}}">
+            <textarea maxlength="-1" bindinput="bindInput" value="{{qrMsg}}" class="recognize-content" placeholder="请输入二维码的文本内容"/>
+            <view class="home-clear"><text  hidden="{{showClear}}" bindtap="bindClearAll">CLEAR</text>
+            </view>
+        </view>
+
+    </view>
+    <form report-submit bindsubmit="submit">
+</form>
+</view>
