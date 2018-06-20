@@ -13,7 +13,7 @@ ATN微信小程序现有功能如下：
   **子私钥生成**和**子私钥合并**功能都是基于**密钥分割**的原理而开发的小工具，核心代码在于sssa.js中的create()和combine()方法。如果只是基于浏览器端开发应用，可通过npm引入module的方式，直接引入调用既可，参考项目[coldwallet](https://github.com/bihu-id/)以及[sssa.js](https://github.com/SSSaaS/sssa-js)。密钥分割的原理有兴趣可以自己去探索下。大致原理就是将一个秘密数"raw"分成"shares"份，要求至少"minimum"份凑到一起才能恢复(combine)出秘密raw。minimum就是之前提到的**最小分割**基数，简单讲就是恢复父私钥需要的最小子私钥的份数。
 
 ### 实现方式
-  **子私钥生成**和**子私钥合并**的功能代码主体是基于 纯客户端安全的思想进行代码编写的，主要难点在微信小程序对传统JS库的生态兼容问提，由于微信小程序微信小程序不运行在浏览器，所以不能操作Dom，也没有document、window对象，直接引入第三发插件sssa.js是不能在小程序平台上运行的，只能导出源码，将sssa.js依赖的window对象的代码全部抽出重写，同时通过[Tina框架](https://tina.js.org/#/guide/component)编译生成对应的微信小程序可运行代码。至于QRCode二维码的生成参考
+  **子私钥生成**和**子私钥合并**的功能代码主体是基于 纯客户端安全的思想进行代码编写的，主要难点在微信小程序对传统JS库的生态兼容问提，由于微信小程序微信小程序不运行在浏览器，所以不能操作Dom，也没有document、window对象，直接引入第三发插件sssa.js是不能在小程序平台上运行的，只能导出源码，将sssa.js依赖的window对象的代码全部抽出重写，同时通过[Tina框架](https://tina.js.org/#/guide/component)编译生成对应的微信小程序可运行代码。至于QRCode二维码的生成参考[weapp.qrcode.js在微信小程序中，快速生成二维码](https://github.com/yingye/weapp-qrcode)
 
 ### 本地开发环境搭建
 1. 本地安装Node开发环境 [(安装地址)](https://nodejs.org/en/download/)
