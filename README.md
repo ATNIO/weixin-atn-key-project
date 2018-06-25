@@ -53,6 +53,6 @@ ATN微信小程序现有功能如下：
 
 ### Reference
 1. [weapp.qrcode.js在微信小程序中，快速生成二维码](https://github.com/yingye/weapp-qrcode)
-2. [Github开源项目coldwallet](https://github.com/bihu-id/coldwallet)
+2. [Github开源项目coldwallet](https://github.com/edgeowner/Coldwallet)
 
 
