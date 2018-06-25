@@ -1,7 +1,7 @@
 # weixin-atn-key-project
-> Secret segmentation
+> Shamir's Secret Sharing
 ## License
-MIT &copy; edgeowner
+MIT &copy; ATNIO
 
 ## ATN Secret Segmentation WeChat Small Program
 ### Introduction
